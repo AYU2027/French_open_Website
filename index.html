@@ -3,322 +3,282 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>🎾French Open</title>
+    <title>🎾 Roland Garros | Championship Hub</title>
 
-    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="./style.css">
+    <style>
+      :root {
+        --clay-orange: #ce5d31;
+        --clay-dark: #a14624;
+        --french-yellow: #FAC213;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(-45deg, #ce5d31, #e38a64, #2c3e50, #1a1a1a);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: white;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Sticky Navbar with Blur */
+      .navbar {
+        background: rgba(250, 194, 19, 0.8) !important;
+        backdrop-filter: blur(15px);
+        border-bottom: 3px solid var(--clay-orange);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        z-index: 1050;
+      }
+
+      /* Card Styling */
+      .card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        color: white;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        border-color: var(--french-yellow);
+      }
+
+      .custom-card-img {
+        object-fit: cover;
+        height: 100%;
+        min-height: 250px;
+        transition: transform 0.6s ease;
+      }
+
+      .card:hover .custom-card-img {
+        transform: scale(1.05);
+      }
+
+      /* Reveal Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease-out;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Countdown Styling */
+      .timer-box {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--french-yellow);
+        border-radius: 15px;
+        padding: 15px;
+        min-width: 80px;
+      }
+
+      /* Gallery Styling */
+      .gallery-img {
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
+        cursor: pointer;
+        filter: grayscale(30%);
+        transition: 0.4s;
+      }
+
+      .gallery-img:hover {
+        filter: grayscale(0%);
+        transform: scale(1.02);
+      }
+
+      /* Offcanvas */
+      .offcanvas {
+        background: rgba(26, 26, 26, 0.95);
+        color: white;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-link {
+        color: #fff !important;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin-bottom: 5px;
+      }
+
+      .nav-link:hover {
+        background: var(--clay-orange);
+      }
+
+      .btn-primary {
+        background-color: var(--clay-orange);
+        border: none;
+        font-weight: 600;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--clay-dark);
+      }
+    </style>
   </head>
   <body>
 
-    <!-- Red Line -->
-    <div id="navbar-below-line" class="fixed-top"></div>
-
-    <!-- Navbar with Offcanvas Toggle -->
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #FAC213;">
+    <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
-        <!-- Toggle Button -->
-        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#myCanvas" aria-controls="myCanvas">
-          <i class="bi bi-list" style="font-size: 1.5rem;color: white;"></i>
+        <button class="btn border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#myCanvas">
+          <i class="bi bi-list-nested" style="font-size: 2rem; color: white;"></i>
         </button>
-
-        <!-- Logo -->
-        <a class="navbar-brand mx-auto" href="#">
-          <i class="bi bi-dribbble"></i> French Open
+        <a class="navbar-brand mx-auto fw-bold text-white letter-spacing-1" href="#">
+          <i class="bi bi-dribbble me-2"></i> FRENCH OPEN
         </a>
       </div>
-      <!-- Red Line -->
-    <div id="navbar-below-line" class="fixed-top"></div>
     </nav>
-     <!-- Red Line -->
-    <div id="navbar-below-line"></div>
 
-    <!-- Offcanvas Sidebar -->
-    <div class="offcanvas offcanvas-start " tabindex="-1" id="myCanvas" aria-labelledby="myCanvasLabel">
-      <div class="offcanvas-header">
-        <h6 class="offcanvas-title" id="myCanvasLabel">Year-wise-winner</h6>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body" >
-        <ul class="nav flex-column">
-          <li class="nav-item"><a class="nav-link" href="#first" data-bs-dismiss="offcanvas">2025</a></li>
-          <li class="nav-item"><a class="nav-link" href="#y2024" data-bs-dismiss="offcanvas">2024</a></li>
-          <li class="nav-item"><a class="nav-link" href="#y2023" data-bs-dismiss="offcanvas">2023</a></li>
-          <li class="nav-item"><a class="nav-link" href="#y2022" data-bs-dismiss="offcanvas">2022</a></li>
-          <li class="nav-item"><a class="nav-link" href="#y2021" data-bs-dismiss="offcanvas">2021</a></li>
-          <li class="nav-item"><a class="nav-link" href="#y2020" data-bs-dismiss="offcanvas">2020</a></li>
-          <li class="nav-item"><a class="nav-link" href="#y2019" data-bs-dismiss="offcanvas">2019</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2018</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2017</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2016</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2015</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2014</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2013</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2012</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2011</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">2010</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- main section to be displayed  -->
-
-    <div class="container py-3 ind" id="first">
-      <div class="card ">
-        <div class="row g-0">
-          <!-- Left Image -->
-          <div class="col-md-5">
-            <img
-              src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?VersionId=B9lkvqJ4myp5lrrBjf4K578cv8oNK_vZ&size=690:388"
-              alt="Australian Open"
-              class="img-fluid custom-card-img w-100 h-100"
-            />
+    <div class="container" style="margin-top: 120px;">
+      
+      <div class="row mb-5 reveal">
+        <div class="col-12 text-center">
+          <h2 class="fw-bold mb-4"><i class="bi bi-stopwatch"></i> 2026 COUNTDOWN</h2>
+          <div class="d-flex justify-content-center gap-3">
+            <div class="timer-box">
+              <h2 id="days" class="mb-0 fw-bold text-warning">00</h2>
+              <small>DAYS</small>
+            </div>
+            <div class="timer-box">
+              <h2 id="hours" class="mb-0 fw-bold text-warning">00</h2>
+              <small>HRS</small>
+            </div>
+            <div class="timer-box">
+              <h2 id="minutes" class="mb-0 fw-bold text-warning">00</h2>
+              <small>MIN</small>
+            </div>
+            <div class="timer-box">
+              <h2 id="seconds" class="mb-0 fw-bold text-warning">00</h2>
+              <small>SEC</small>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <!-- Right Content -->
-          <div class="col-md-7">
-            <div class="card-body ">
-              <h4 class="card-title">French Open 2025</h4>
-              <p class="card-text" >
-carlos acalarz had defeated the jannik sinner to win his second grand slam title 
-              </p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">
-                  <i class="bi bi-trophy-fill me-1"></i> View Stats
-                </button>
-                <button class="btn btn-outline-warning">
-                  <i class="bi bi-person-lines-fill me-1"></i> Player Info
-                </button>
+      <div class="row mb-5 reveal" id="first">
+        <div class="col-12">
+          <div class="card">
+            <div class="row g-0">
+              <div class="col-md-5 overflow-hidden">
+                <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?size=690:388" class="img-fluid custom-card-img w-100" alt="Alcaraz">
+              </div>
+              <div class="col-md-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5">
+                  <span class="badge bg-warning text-dark mb-2">2025 Champion</span>
+                  <h1 class="card-title fw-bold">Carlos Alcaraz</h1>
+                  <p class="card-text fs-5 opacity-75">Defeated Jannik Sinner in an epic 5-set thriller to win his second consecutive French Open title, cementing his status as the King of Clay's successor.</p>
+                  <div class="d-flex gap-3 mt-4">
+                    <button class="btn btn-primary"><i class="bi bi-trophy-fill me-2"></i>View Stats</button>
+                    <button class="btn btn-outline-light"><i class="bi bi-person-circle me-2"></i>Player Info</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 2024 -->
-    <div class="container py-3" id="y2024">
-      <div class="card ">
-        <div class="row g-0">
-          <div class="col-md-5">
-            <img
-              src="https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w2440/f_auto/primary/v88bsgn1v987jfujji7j"
-              alt="French Open 2024"
-              class="img-fluid w-100 h-100"
-            />
-          </div>
-          <div class="col-md-7">
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 reveal">
+          <div class="card h-100">
+            <img src="https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w2440/f_auto/primary/v88bsgn1v987jfujji7j" class="card-img-top" alt="2024">
             <div class="card-body">
-              <h4 class="card-title">French Open 2024</h4>
-              <p class="card-text">
-                Carlos Alcaraz defeated Alexander Zverev in the final, 6–3, 2–6, 5–7, 6–1, 6–2 to win the men's singles tennis title at the 2024 French Open. It was his first French Open title and third major title overall
-              </p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">
-                  <i class="bi bi-trophy-fill me-1"></i> View Stats
-                </button>
-                <button class="btn btn-outline-warning">
-                  <i class="bi bi-person-lines-fill me-1"></i> Player Info
-                </button>
-              </div>
+              <h4 class="fw-bold">2024: Carlos Alcaraz</h4>
+              <p class="opacity-75">A grueling victory over Alexander Zverev marking his first Roland Garros title.</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- 2023 -->
-    <div class="container py-3" id="y2023">
-      <div class="card ">
-        <div class="row g-0">
-          <div class="col-md-5">
-            <img
-              src="https://images.prismic.io/fft-rg-commun-news/c831c3a7-4f97-4623-8214-17e19217591a_20230611_RG_CD_6910_web.jpg?auto=compress,format&w=1000&h=800"
-              alt="French Open 2023"
-              class="img-fluid w-100 h-100"
-            />
-          </div>
-          <div class="col-md-7">
+        <div class="col-md-6 reveal">
+          <div class="card h-100">
+            <img src="https://images.prismic.io/fft-rg-commun-news/c831c3a7-4f97-4623-8214-17e19217591a_20230611_RG_CD_6910_web.jpg?auto=compress,format&w=1000&h=800" class="card-img-top" alt="2023">
             <div class="card-body">
-              <h4 class="card-title">French Open 2023</h4>
-              <p class="card-text">
-                Novak Djokovic defeated Casper Ruud in the final, 7–6(7–1), 6–3, 7–5 to win the men's singles tennis title at the 2023 French Open. It was his third French Open title and record-breaking 23rd men's singles major title overall, surpassing Rafael Nadal's all-time record
-              </p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">
-                  <i class="bi bi-trophy-fill me-1"></i> View Stats
-                </button>
-                <button class="btn btn-outline-warning">
-                  <i class="bi bi-person-lines-fill me-1"></i> Player Info
-                </button>
-              </div>
+              <h4 class="fw-bold">2023: Novak Djokovic</h4>
+              <p class="opacity-75">History made as Djokovic secured his 23rd Grand Slam title against Casper Ruud.</p>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="row mb-5 reveal">
+        <div class="col-12 text-center mb-4">
+          <h2 class="fw-bold">ICONIC CLAY MOMENTS</h2>
+        </div>
+        <div class="col-md-4 mb-4"><img src="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?auto=format&fit=crop&w=600" class="gallery-img w-100 shadow" alt="Moment 1"></div>
+        <div class="col-md-4 mb-4"><img src="https://images.unsplash.com/photo-1622279457486-62dcc4a4bd13?auto=format&fit=crop&w=600" class="gallery-img w-100 shadow" alt="Moment 2"></div>
+        <div class="col-md-4 mb-4"><img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=600" class="gallery-img w-100 shadow" alt="Moment 3"></div>
+      </div>
+
     </div>
 
-    <!-- 2022 -->
-    <div class="container py-3" id="y2022">
-      <div class="card ">
-        <div class="row g-0">
-          <div class="col-md-5">
-            <img
-              src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd2me2qg8dfiw8u.cloudfront.net%2Fcontent%2Fuploads%2F2022%2F06%2F05182853%2FRafael-Nadal-2022-French-Open-champion.jpg"
-              alt="French Open 2022"
-              class="img-fluid w-100 h-100"
-            />
-          </div>
-          <div class="col-md-7">
-            <div class="card-body">
-              <h4 class="card-title">French Open 2022</h4>
-              <p class="card-text">
-                Rafael Nadal defeated Casper Ruud in the final, 6–3, 6–3, 6–0 to win the men's singles tennis title at the 2022 French Open. It was his record-extending 14th French Open title and record-extending 22nd and final major title overall
-              </p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">
-                  <i class="bi bi-trophy-fill me-1"></i> View Stats
-                </button>
-                <button class="btn btn-outline-warning">
-                  <i class="bi bi-person-lines-fill me-1"></i> Player Info
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="myCanvas">
+      <div class="offcanvas-header border-bottom border-secondary">
+        <h5 class="offcanvas-title text-warning fw-bold">CHAMPIONS HISTORY</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="nav flex-column">
+          <a class="nav-link" href="#first" data-bs-dismiss="offcanvas">2025 - Alcaraz</a>
+          <a class="nav-link" href="#">2024 - Alcaraz</a>
+          <a class="nav-link" href="#">2023 - Djokovic</a>
+          <a class="nav-link" href="#">2022 - Nadal</a>
+          <hr class="text-secondary">
+          <a class="nav-link text-warning" href="#"><i class="bi bi-ticket-perforated me-2"></i>Get 2026 Tickets</a>
+        </nav>
       </div>
     </div>
 
-    <!-- 2021 -->
-    <div class="container py-3" id="y2021">
-      <div class="card ">
-        <div class="row g-0">
-          <div class="col-md-5">
-            <img
-              src="https://images.indianexpress.com/2021/06/djokovic-french-open-2021-final.jpg"
-              alt="French Open 2021"
-              class="img-fluid w-100 h-100"
-            />
-          </div>
-          <div class="col-md-7">
-            <div class="card-body">
-              <h4 class="card-title">French Open 2021</h4>
-              <p class="card-text">
-                Novak Djokovic defeated Stefanos Tsitsipas in the final, 6–7(6–8), 2–6, 6–3, 6–2, 6–4 to win the men's singles tennis title at the 2021 French Open.[1] It was his second French Open title and 19th major title overall.
-              </p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">
-                  <i class="bi bi-trophy-fill me-1"></i> View Stats
-                </button>
-                <button class="btn btn-outline-warning">
-                  <i class="bi bi-person-lines-fill me-1"></i> Player Info
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2020 -->
-    <div class="container py-3" id="y2020">
-      <div class="card ">
-        <div class="row g-0">
-          <div class="col-md-5">
-            <img
-              src="https://currentaffairs.adda247.com/wp-content/uploads/multisite/sites/5/2020/10/11135011/nadal-french-open.png"
-              alt="French Open 2020"
-              class="img-fluid w-100 h-100"
-            />
-          </div>
-          <div class="col-md-7">
-            <div class="card-body">
-              <h4 class="card-title">French Open 2020</h4>
-              <p class="card-text">
-                Three-time defending champion Rafael Nadal defeated Novak Djokovic in the final, 6–0, 6–2, 7–5 to win the men's singles tennis title at the 2020 French Open.[1] It was his record-extending 13th French Open title and 20th major title overall, equaling Roger Federer's all-time record of men's singles titles.
-              </p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">
-                  <i class="bi bi-trophy-fill me-1"></i> View Stats
-                </button>
-                <button class="btn btn-outline-warning">
-                  <i class="bi bi-person-lines-fill me-1"></i> Player Info
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-      <!-- 2019 -->
-    <div class="container py-3" id="y2020">
-      <div class="card ">
-        <div class="row g-0">
-          <div class="col-md-5">
-            <img
-              src="https://i.guim.co.uk/img/media/e7003c5cced0f0953e5efea4682afb985c6abca0/0_120_5130_3078/master/5130.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=e983afba39ea3585554b45feaf7702e4"
-              alt="French Open 2020"
-              class="img-fluid w-100 h-100"
-            />
-          </div>
-          <div class="col-md-7">
-            <div class="card-body">
-              <h4 class="card-title">French Open 2019</h4>
-              <p class="card-text">
-                Two-time defending champion Rafael Nadal defeated Dominic Thiem in a rematch of the previous year's final, 6–3, 5–7, 6–1, 6–1 to win the men's singles tennis title at the 2019 French Open.
-              </p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">
-                  <i class="bi bi-trophy-fill me-1"></i> View Stats
-                </button>
-                <button class="btn btn-outline-warning">
-                  <i class="bi bi-person-lines-fill me-1"></i> Player Info
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-  // Get all links inside the offcanvas that link to IDs on page
-  document.querySelectorAll('.offcanvas-body a.nav-link[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default jump
-      
-      const targetId = this.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (!targetElement) return;
+      // 1. Reveal on Scroll Logic
+      function reveal() {
+        const reveals = document.querySelectorAll(".reveal");
+        reveals.forEach(el => {
+          const windowHeight = window.innerHeight;
+          const elementTop = el.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 100) {
+            el.classList.add("active");
+          }
+        });
+      }
+      window.addEventListener("scroll", reveal);
+      window.onload = reveal;
 
-      // Get the offcanvas element
-      const offcanvasEl = document.getElementById('myCanvas');
-      // Hide the offcanvas
-      const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
-      bsOffcanvas.hide();
+      // 2. Countdown Logic (Targeting May 24, 2026)
+      const countdown = () => {
+        const countDate = new Date("May 24, 2026 00:00:00").getTime();
+        const now = new Date().getTime();
+        const gap = countDate - now;
 
-      // After offcanvas hides, scroll to target smoothly
-      offcanvasEl.addEventListener('hidden.bs.offcanvas', function handler() {
-        // Scroll smoothly
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-        // Remove event listener after running once
-        offcanvasEl.removeEventListener('hidden.bs.offcanvas', handler);
-      });
-    });
-  });
-</script>
+        const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
 
-   
-
+        document.getElementById("days").innerText = Math.floor(gap / day);
+        document.getElementById("hours").innerText = Math.floor((gap % day) / hour);
+        document.getElementById("minutes").innerText = Math.floor((gap % hour) / minute);
+        document.getElementById("seconds").innerText = Math.floor((gap % minute) / second);
+      };
+      setInterval(countdown, 1000);
+      countdown();
     </script>
   </body>
 </html>
-
