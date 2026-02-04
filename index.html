@@ -54,17 +54,20 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .clay-bg {
+            background: linear-gradient(45deg, #ce5d31, #a14624);
+        }
     </style>
 </head>
 <body class="text-white font-sans antialiased overflow-x-hidden">
 
-    <nav class="fixed top-0 w-full z-50 py-6 px-6 md:px-12 transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-50 py-6 px-6 md:px-12 transition-all duration-300 backdrop-blur-md border-b border-white/5" id="navbar">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <button onclick="toggleSidebar()" class="group glass-card p-3 rounded-full hover:bg-prestige transition-all duration-500">
                 <i data-lucide="menu" class="w-6 h-6 group-hover:text-black"></i>
             </button>
             <h1 class="font-display font-bold text-lg md:text-xl tracking-[0.4em] text-prestige">ROLAND GARROS</h1>
-            <a href="https://www.rolandgarros.com" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-prestige transition-colors">Tickets</a>
+            <a href="https://www.rolandgarros.com" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-prestige transition-all hover:scale-105 active:scale-95">Tickets</a>
         </div>
     </nav>
 
@@ -72,10 +75,10 @@
         <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
             <div class="reveal">
                 <p class="text-prestige text-[10px] font-bold tracking-[0.6em] uppercase mb-4">The Current Era</p>
-                <h2 class="text-6xl md:text-8xl font-black mb-6 leading-none italic">CARLOS<br>ALCARAZ</h2>
+                <h2 class="text-6xl md:text-8xl font-black mb-6 leading-none italic font-display">CARLOS<br>ALCARAZ</h2>
                 <p class="text-slate-400 font-light text-lg mb-8 max-w-md">2025: Defeating Jannik Sinner in a masterclass performance on the red clay of Philippe-Chatrier.</p>
                 <div class="flex gap-6">
-                    <button onclick="document.getElementById('archives').scrollIntoView()" class="bg-clay-500 px-8 py-3 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-clay-600 transition-all flex items-center gap-2">
+                    <button onclick="document.getElementById('archives').scrollIntoView({behavior:'smooth'})" class="bg-clay-500 px-8 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-clay-600 transition-all flex items-center gap-2 hover:scale-105 active:scale-95">
                         <i data-lucide="history" class="w-4 h-4"></i> Explore History
                     </button>
                 </div>
@@ -83,14 +86,14 @@
             <div class="reveal animate-float relative">
                 <div class="absolute -inset-10 bg-clay-500/20 blur-[100px]"></div>
                 <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?size=800:450" 
-                     class="rounded-2xl border border-white/10 shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-1000" alt="Champ">
+                     class="rounded-3xl border border-white/10 shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-1000 cursor-pointer" alt="Champ">
             </div>
         </div>
     </header>
 
     <section class="max-w-7xl mx-auto px-6 py-24" id="archives">
         <div class="mb-16 reveal">
-            <h3 class="font-display text-3xl mb-2 italic">LEGACY ARCHIVE</h3>
+            <h3 class="font-display text-4xl mb-2 italic tracking-tighter">THE LEGACY ARCHIVE</h3>
             <div class="h-1 w-24 bg-prestige"></div>
         </div>
 
@@ -100,21 +103,19 @@
 
     <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[60] hidden transition-all duration-500"></div>
     <aside id="sidebar" class="fixed top-0 left-0 h-full w-full md:w-[400px] bg-[#0a0a0a] z-[70] transform -translate-x-full transition-transform duration-700 p-12 flex flex-col justify-center border-r border-white/5">
-        <div class="space-y-10">
+        <div class="space-y-10 text-center md:text-left">
             <a href="#home" onclick="toggleSidebar()" class="group block">
                 <span class="text-prestige text-[10px] font-bold uppercase tracking-widest">01</span>
-                <h4 class="text-4xl font-black italic group-hover:translate-x-4 transition-transform duration-300">HOME</h4>
+                <h4 class="text-5xl font-black italic group-hover:translate-x-4 transition-transform duration-300">HOME</h4>
             </a>
             <a href="#archives" onclick="toggleSidebar()" class="group block">
                 <span class="text-prestige text-[10px] font-bold uppercase tracking-widest">02</span>
-                <h4 class="text-4xl font-black italic group-hover:translate-x-4 transition-transform duration-300">THE ARCHIVE</h4>
+                <h4 class="text-5xl font-black italic group-hover:translate-x-4 transition-transform duration-300">THE ARCHIVE</h4>
             </a>
-            <div class="pt-10 border-t border-white/10">
-                <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-4">Official Channels</p>
-                <div class="flex gap-4">
-                    <i data-lucide="instagram" class="w-5 h-5 cursor-pointer hover:text-prestige transition-colors"></i>
-                    <i data-lucide="twitter" class="w-5 h-5 cursor-pointer hover:text-prestige transition-colors"></i>
-                </div>
+            <div class="pt-10 border-t border-white/10 flex justify-center md:justify-start gap-8">
+                <i data-lucide="instagram" class="w-6 h-6 cursor-pointer hover:text-prestige transition-colors"></i>
+                <i data-lucide="twitter" class="w-6 h-6 cursor-pointer hover:text-prestige transition-colors"></i>
+                <i data-lucide="youtube" class="w-6 h-6 cursor-pointer hover:text-prestige transition-colors"></i>
             </div>
         </div>
     </aside>
@@ -135,38 +136,37 @@
             document.getElementById('overlay').classList.toggle('hidden');
         }
 
-        // Data for Last 10 Years
         const data = [
             { yr: '2025', name: 'Carlos Alcaraz', img: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?size=600:337' },
             { yr: '2024', name: 'Carlos Alcaraz', img: 'https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w2440/f_auto/primary/v88bsgn1v987jfujji7j' },
             { yr: '2023', name: 'Novak Djokovic', img: 'https://images.prismic.io/fft-rg-commun-news/c831c3a7-4f97-4623-8214-17e19217591a_20230611_RG_CD_6910_web.jpg?auto=compress,format&w=800' },
             { yr: '2022', name: 'Rafael Nadal', img: 'https://images.ps-aws.com/c?url=https%3A%2F%2Fd2me2qg8dfiw8u.cloudfront.net%2Fcontent%2Fuploads%2F2022%2F06%2F05182853%2FRafael-Nadal-2022-French-Open-champion.jpg' },
             { yr: '2021', name: 'Novak Djokovic', img: 'https://images.indianexpress.com/2021/06/djokovic-french-open-2021-final.jpg' },
-            { yr: '2020', name: 'Rafael Nadal', img: 'https://currentaffairs.adda247.com/wp-content/uploads/multisite/sites/5/2020/10/11135011/nadal-french-open.png' },
+            { yr: '2020', name: 'Rafael Nadal', img: 'https://thumb.spokesman.com/eX3DCDcczA5Jo8zuWK5-W10DlEU=/2500x0/media.spokesman.com/photos/2020/10/12/5f849c6914673.hires.jpg' },
             { yr: '2019', name: 'Rafael Nadal', img: 'https://images.prismic.io/fft-rg-commun-news/6692bd0d-9931-4a76-a55f-b30193fc802e_20190609_RG_NG_1658_web_web.jpg?auto=compress,format&w=1000&h=800' },
             { yr: '2018', name: 'Rafael Nadal', img: 'https://data1.ibtimes.co.in/en/full/689852/rafael-nadal.jpg?h=450&l=50&t=40' },
-            { yr: '2017', name: 'Rafael Nadal', img: 'https://cdn1.tennishead.net/uploads/106/2020/05/Rafa-Nadal-2017-French-Open.jpg' },
-            { yr: '2016', name: 'Novak Djokovic', img: 'https://images.prismic.io/fft-rg-commun-news%2F575d6618-2771-4ad8-9ebe-3fa1c8a47ba0_djokovic+murray+finale+roland-garros+2016.jpg?auto=format,compress?auto=compress,format&w=1000&h=800' },
+            { yr: '2017', name: 'Rafael Nadal', img: 'https://news.cgtn.com/news/3d55544e3149444e/img/44697814-4485-4bb9-9b99-41378afe1893.jpg' },
+            { yr: '2016', name: 'Novak Djokovic', img: 'https://images.prismic.io/fft-rg-commun-news/575d6618-2771-4ad8-9ebe-3fa1c8a47ba0_djokovic+murray+finale+roland-garros+2016.jpg?auto=format,compress&w=1000&h=800' },
             { yr: '2015', name: 'Stan Wawrinka', img: 'https://legacymedia.sportsplatform.io/img/slides/photos/003/988/285/e3d6183985e1e7939639b89d6cde2411_crop_exact.jpg?w=802' }
         ];
 
         const grid = document.getElementById('history-grid');
         data.forEach(c => {
             const card = document.createElement('div');
-            card.className = "reveal glass-card rounded-[40px] p-5 group cursor-pointer hover:bg-white/5 transition-all duration-700";
+            card.className = "reveal glass-card rounded-[40px] p-5 group cursor-pointer hover:bg-white/5 transition-all duration-700 hover:-translate-y-2";
             card.innerHTML = `
-                <div class="relative overflow-hidden rounded-[30px] mb-6">
-                    <img src="${c.img}" class="w-full h-64 object-cover group-hover:scale-110 transition duration-1000 grayscale group-hover:grayscale-0">
-                    <div class="absolute top-4 right-4 bg-black/60 px-3 py-1 rounded-full text-[10px] font-bold text-prestige">${c.yr}</div>
+                <div class="relative overflow-hidden rounded-[30px] mb-6 clay-bg h-64 shadow-2xl">
+                    <img src="${c.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000 grayscale group-hover:grayscale-0" onerror="this.src='https://images.unsplash.com/photo-1599586120429-48281b6f0ece?auto=format&fit=crop&w=600'">
+                    <div class="absolute top-4 right-4 bg-black/70 backdrop-blur-md px-4 py-1 rounded-full text-[10px] font-bold text-prestige tracking-widest italic">${c.yr}</div>
                 </div>
-                <h4 class="text-xl font-black italic tracking-tighter uppercase group-hover:text-prestige transition-colors">${c.name}</h4>
-                <div class="mt-2 h-0.5 w-0 bg-prestige group-hover:w-full transition-all duration-500"></div>
+                <h4 class="text-2xl font-black italic tracking-tighter uppercase group-hover:text-prestige transition-colors font-display">${c.name}</h4>
+                <div class="mt-3 h-0.5 w-0 bg-prestige group-hover:w-full transition-all duration-500 shadow-[0_0_10px_#FAC213]"></div>
             `;
             grid.appendChild(card);
             observer.observe(card);
         });
 
-        // Initial reveal for elements already on screen
+        // Trigger reveal for elements in view on load
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
