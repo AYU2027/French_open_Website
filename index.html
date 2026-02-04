@@ -1,284 +1,173 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>🎾 Roland Garros | Championship Hub</title>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎾 Roland Garros | Prestige Legacy</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Syncopate', 'sans-serif']
+                    },
+                    colors: {
+                        clay: { 500: '#ce5d31', 600: '#a14624', 900: '#451a03' },
+                        prestige: '#FAC213'
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-      :root {
-        --clay-orange: #ce5d31;
-        --clay-dark: #a14624;
-        --french-yellow: #FAC213;
-        --glass-bg: rgba(255, 255, 255, 0.1);
-        --glass-border: rgba(255, 255, 255, 0.2);
-      }
-
-      body {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(-45deg, #ce5d31, #e38a64, #2c3e50, #1a1a1a);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        color: white;
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-
-      @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-
-      /* Sticky Navbar with Blur */
-      .navbar {
-        background: rgba(250, 194, 19, 0.8) !important;
-        backdrop-filter: blur(15px);
-        border-bottom: 3px solid var(--clay-orange);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        z-index: 1050;
-      }
-
-      /* Card Styling */
-      .card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        color: white;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        border-color: var(--french-yellow);
-      }
-
-      .custom-card-img {
-        object-fit: cover;
-        height: 100%;
-        min-height: 250px;
-        transition: transform 0.6s ease;
-      }
-
-      .card:hover .custom-card-img {
-        transform: scale(1.05);
-      }
-
-      /* Reveal Animation */
-      .reveal {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s ease-out;
-      }
-
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Countdown Styling */
-      .timer-box {
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid var(--french-yellow);
-        border-radius: 15px;
-        padding: 15px;
-        min-width: 80px;
-      }
-
-      /* Gallery Styling */
-      .gallery-img {
-        height: 300px;
-        object-fit: cover;
-        border-radius: 15px;
-        cursor: pointer;
-        filter: grayscale(30%);
-        transition: 0.4s;
-      }
-
-      .gallery-img:hover {
-        filter: grayscale(0%);
-        transform: scale(1.02);
-      }
-
-      /* Offcanvas */
-      .offcanvas {
-        background: rgba(26, 26, 26, 0.95);
-        color: white;
-        backdrop-filter: blur(10px);
-      }
-
-      .nav-link {
-        color: #fff !important;
-        font-size: 1.1rem;
-        padding: 10px 20px;
-        border-radius: 10px;
-        margin-bottom: 5px;
-      }
-
-      .nav-link:hover {
-        background: var(--clay-orange);
-      }
-
-      .btn-primary {
-        background-color: var(--clay-orange);
-        border: none;
-        font-weight: 600;
-      }
-
-      .btn-primary:hover {
-        background-color: var(--clay-dark);
-      }
+        body {
+            background: radial-gradient(circle at top right, #ce5d31 0%, #111111 45%);
+            background-attachment: fixed;
+            background-color: #0a0a0a;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body class="text-white font-sans antialiased overflow-x-hidden">
 
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container-fluid">
-        <button class="btn border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#myCanvas">
-          <i class="bi bi-list-nested" style="font-size: 2rem; color: white;"></i>
-        </button>
-        <a class="navbar-brand mx-auto fw-bold text-white letter-spacing-1" href="#">
-          <i class="bi bi-dribbble me-2"></i> FRENCH OPEN
-        </a>
-      </div>
+    <nav class="fixed top-0 w-full z-50 py-6 px-6 md:px-12 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <button onclick="toggleSidebar()" class="group glass-card p-3 rounded-full hover:bg-prestige transition-all duration-500">
+                <i data-lucide="menu" class="w-6 h-6 group-hover:text-black"></i>
+            </button>
+            <h1 class="font-display font-bold text-lg md:text-xl tracking-[0.4em] text-prestige">ROLAND GARROS</h1>
+            <a href="https://www.rolandgarros.com" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-prestige transition-colors">Tickets</a>
+        </div>
     </nav>
 
-    <div class="container" style="margin-top: 120px;">
-      
-      <div class="row mb-5 reveal">
-        <div class="col-12 text-center">
-          <h2 class="fw-bold mb-4"><i class="bi bi-stopwatch"></i> 2026 COUNTDOWN</h2>
-          <div class="d-flex justify-content-center gap-3">
-            <div class="timer-box">
-              <h2 id="days" class="mb-0 fw-bold text-warning">00</h2>
-              <small>DAYS</small>
-            </div>
-            <div class="timer-box">
-              <h2 id="hours" class="mb-0 fw-bold text-warning">00</h2>
-              <small>HRS</small>
-            </div>
-            <div class="timer-box">
-              <h2 id="minutes" class="mb-0 fw-bold text-warning">00</h2>
-              <small>MIN</small>
-            </div>
-            <div class="timer-box">
-              <h2 id="seconds" class="mb-0 fw-bold text-warning">00</h2>
-              <small>SEC</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mb-5 reveal" id="first">
-        <div class="col-12">
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-5 overflow-hidden">
-                <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?size=690:388" class="img-fluid custom-card-img w-100" alt="Alcaraz">
-              </div>
-              <div class="col-md-7 d-flex align-items-center">
-                <div class="card-body p-4 p-lg-5">
-                  <span class="badge bg-warning text-dark mb-2">2025 Champion</span>
-                  <h1 class="card-title fw-bold">Carlos Alcaraz</h1>
-                  <p class="card-text fs-5 opacity-75">Defeated Jannik Sinner in an epic 5-set thriller to win his second consecutive French Open title, cementing his status as the King of Clay's successor.</p>
-                  <div class="d-flex gap-3 mt-4">
-                    <button class="btn btn-primary"><i class="bi bi-trophy-fill me-2"></i>View Stats</button>
-                    <button class="btn btn-outline-light"><i class="bi bi-person-circle me-2"></i>Player Info</button>
-                  </div>
+    <header class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6" id="home">
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <p class="text-prestige text-[10px] font-bold tracking-[0.6em] uppercase mb-4">The Current Era</p>
+                <h2 class="text-6xl md:text-8xl font-black mb-6 leading-none italic">CARLOS<br>ALCARAZ</h2>
+                <p class="text-slate-400 font-light text-lg mb-8 max-w-md">2025: Defeating Jannik Sinner in a masterclass performance on the red clay of Philippe-Chatrier.</p>
+                <div class="flex gap-6">
+                    <button onclick="document.getElementById('archives').scrollIntoView()" class="bg-clay-500 px-8 py-3 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-clay-600 transition-all flex items-center gap-2">
+                        <i data-lucide="history" class="w-4 h-4"></i> Explore History
+                    </button>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row g-4 mb-5">
-        <div class="col-md-6 reveal">
-          <div class="card h-100">
-            <img src="https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w2440/f_auto/primary/v88bsgn1v987jfujji7j" class="card-img-top" alt="2024">
-            <div class="card-body">
-              <h4 class="fw-bold">2024: Carlos Alcaraz</h4>
-              <p class="opacity-75">A grueling victory over Alexander Zverev marking his first Roland Garros title.</p>
+            <div class="reveal animate-float relative">
+                <div class="absolute -inset-10 bg-clay-500/20 blur-[100px]"></div>
+                <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?size=800:450" 
+                     class="rounded-2xl border border-white/10 shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-1000" alt="Champ">
             </div>
-          </div>
         </div>
-        <div class="col-md-6 reveal">
-          <div class="card h-100">
-            <img src="https://images.prismic.io/fft-rg-commun-news/c831c3a7-4f97-4623-8214-17e19217591a_20230611_RG_CD_6910_web.jpg?auto=compress,format&w=1000&h=800" class="card-img-top" alt="2023">
-            <div class="card-body">
-              <h4 class="fw-bold">2023: Novak Djokovic</h4>
-              <p class="opacity-75">History made as Djokovic secured his 23rd Grand Slam title against Casper Ruud.</p>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-6 py-24" id="archives">
+        <div class="mb-16 reveal">
+            <h3 class="font-display text-3xl mb-2 italic">LEGACY ARCHIVE</h3>
+            <div class="h-1 w-24 bg-prestige"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="history-grid">
             </div>
-          </div>
+    </section>
+
+    <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[60] hidden transition-all duration-500"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-full md:w-[400px] bg-[#0a0a0a] z-[70] transform -translate-x-full transition-transform duration-700 p-12 flex flex-col justify-center border-r border-white/5">
+        <div class="space-y-10">
+            <a href="#home" onclick="toggleSidebar()" class="group block">
+                <span class="text-prestige text-[10px] font-bold uppercase tracking-widest">01</span>
+                <h4 class="text-4xl font-black italic group-hover:translate-x-4 transition-transform duration-300">HOME</h4>
+            </a>
+            <a href="#archives" onclick="toggleSidebar()" class="group block">
+                <span class="text-prestige text-[10px] font-bold uppercase tracking-widest">02</span>
+                <h4 class="text-4xl font-black italic group-hover:translate-x-4 transition-transform duration-300">THE ARCHIVE</h4>
+            </a>
+            <div class="pt-10 border-t border-white/10">
+                <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-4">Official Channels</p>
+                <div class="flex gap-4">
+                    <i data-lucide="instagram" class="w-5 h-5 cursor-pointer hover:text-prestige transition-colors"></i>
+                    <i data-lucide="twitter" class="w-5 h-5 cursor-pointer hover:text-prestige transition-colors"></i>
+                </div>
+            </div>
         </div>
-      </div>
+    </aside>
 
-      <div class="row mb-5 reveal">
-        <div class="col-12 text-center mb-4">
-          <h2 class="fw-bold">ICONIC CLAY MOMENTS</h2>
-        </div>
-        <div class="col-md-4 mb-4"><img src="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?auto=format&fit=crop&w=600" class="gallery-img w-100 shadow" alt="Moment 1"></div>
-        <div class="col-md-4 mb-4"><img src="https://images.unsplash.com/photo-1622279457486-62dcc4a4bd13?auto=format&fit=crop&w=600" class="gallery-img w-100 shadow" alt="Moment 2"></div>
-        <div class="col-md-4 mb-4"><img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=600" class="gallery-img w-100 shadow" alt="Moment 3"></div>
-      </div>
-
-    </div>
-
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="myCanvas">
-      <div class="offcanvas-header border-bottom border-secondary">
-        <h5 class="offcanvas-title text-warning fw-bold">CHAMPIONS HISTORY</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-      </div>
-      <div class="offcanvas-body">
-        <nav class="nav flex-column">
-          <a class="nav-link" href="#first" data-bs-dismiss="offcanvas">2025 - Alcaraz</a>
-          <a class="nav-link" href="#">2024 - Alcaraz</a>
-          <a class="nav-link" href="#">2023 - Djokovic</a>
-          <a class="nav-link" href="#">2022 - Nadal</a>
-          <hr class="text-secondary">
-          <a class="nav-link text-warning" href="#"><i class="bi bi-ticket-perforated me-2"></i>Get 2026 Tickets</a>
-        </nav>
-      </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      // 1. Reveal on Scroll Logic
-      function reveal() {
-        const reveals = document.querySelectorAll(".reveal");
-        reveals.forEach(el => {
-          const windowHeight = window.innerHeight;
-          const elementTop = el.getBoundingClientRect().top;
-          if (elementTop < windowHeight - 100) {
-            el.classList.add("active");
-          }
+        lucide.createIcons();
+
+        // Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        // Sidebar logic
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
+        }
+
+        // Data for Last 10 Years
+        const data = [
+            { yr: '2025', name: 'Carlos Alcaraz', img: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?size=600:337' },
+            { yr: '2024', name: 'Carlos Alcaraz', img: 'https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w2440/f_auto/primary/v88bsgn1v987jfujji7j' },
+            { yr: '2023', name: 'Novak Djokovic', img: 'https://images.prismic.io/fft-rg-commun-news/c831c3a7-4f97-4623-8214-17e19217591a_20230611_RG_CD_6910_web.jpg?auto=compress,format&w=800' },
+            { yr: '2022', name: 'Rafael Nadal', img: 'https://images.ps-aws.com/c?url=https%3A%2F%2Fd2me2qg8dfiw8u.cloudfront.net%2Fcontent%2Fuploads%2F2022%2F06%2F05182853%2FRafael-Nadal-2022-French-Open-champion.jpg' },
+            { yr: '2021', name: 'Novak Djokovic', img: 'https://images.indianexpress.com/2021/06/djokovic-french-open-2021-final.jpg' },
+            { yr: '2020', name: 'Rafael Nadal', img: 'https://currentaffairs.adda247.com/wp-content/uploads/multisite/sites/5/2020/10/11135011/nadal-french-open.png' },
+            { yr: '2019', name: 'Rafael Nadal', img: 'https://images.prismic.io/fft-rg-commun-news/6692bd0d-9931-4a76-a55f-b30193fc802e_20190609_RG_NG_1658_web_web.jpg?auto=compress,format&w=1000&h=800' },
+            { yr: '2018', name: 'Rafael Nadal', img: 'https://data1.ibtimes.co.in/en/full/689852/rafael-nadal.jpg?h=450&l=50&t=40' },
+            { yr: '2017', name: 'Rafael Nadal', img: 'https://cdn1.tennishead.net/uploads/106/2020/05/Rafa-Nadal-2017-French-Open.jpg' },
+            { yr: '2016', name: 'Novak Djokovic', img: 'https://images.prismic.io/fft-rg-commun-news%2F575d6618-2771-4ad8-9ebe-3fa1c8a47ba0_djokovic+murray+finale+roland-garros+2016.jpg?auto=format,compress?auto=compress,format&w=1000&h=800' },
+            { yr: '2015', name: 'Stan Wawrinka', img: 'https://legacymedia.sportsplatform.io/img/slides/photos/003/988/285/e3d6183985e1e7939639b89d6cde2411_crop_exact.jpg?w=802' }
+        ];
+
+        const grid = document.getElementById('history-grid');
+        data.forEach(c => {
+            const card = document.createElement('div');
+            card.className = "reveal glass-card rounded-[40px] p-5 group cursor-pointer hover:bg-white/5 transition-all duration-700";
+            card.innerHTML = `
+                <div class="relative overflow-hidden rounded-[30px] mb-6">
+                    <img src="${c.img}" class="w-full h-64 object-cover group-hover:scale-110 transition duration-1000 grayscale group-hover:grayscale-0">
+                    <div class="absolute top-4 right-4 bg-black/60 px-3 py-1 rounded-full text-[10px] font-bold text-prestige">${c.yr}</div>
+                </div>
+                <h4 class="text-xl font-black italic tracking-tighter uppercase group-hover:text-prestige transition-colors">${c.name}</h4>
+                <div class="mt-2 h-0.5 w-0 bg-prestige group-hover:w-full transition-all duration-500"></div>
+            `;
+            grid.appendChild(card);
+            observer.observe(card);
         });
-      }
-      window.addEventListener("scroll", reveal);
-      window.onload = reveal;
 
-      // 2. Countdown Logic (Targeting May 24, 2026)
-      const countdown = () => {
-        const countDate = new Date("May 24, 2026 00:00:00").getTime();
-        const now = new Date().getTime();
-        const gap = countDate - now;
-
-        const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
-
-        document.getElementById("days").innerText = Math.floor(gap / day);
-        document.getElementById("hours").innerText = Math.floor((gap % day) / hour);
-        document.getElementById("minutes").innerText = Math.floor((gap % hour) / minute);
-        document.getElementById("seconds").innerText = Math.floor((gap % minute) / second);
-      };
-      setInterval(countdown, 1000);
-      countdown();
+        // Initial reveal for elements already on screen
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
-  </body>
+</body>
 </html>
