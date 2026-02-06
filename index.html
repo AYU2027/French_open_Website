@@ -23,11 +23,20 @@
                     },
                     animation: {
                         'float': 'float 4s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'fade-in-delay-1': 'fadeIn 0.8s ease-out 0.1s forwards',
+                        'fade-in-delay-2': 'fadeIn 0.8s ease-out 0.2s forwards',
+                        'fade-in-delay-3': 'fadeIn 0.8s ease-out 0.3s forwards',
+                        'fade-in-delay-4': 'fadeIn 0.8s ease-out 0.4s forwards',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-15px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -55,7 +64,216 @@
             transform: translateY(0);
         }
         .clay-bg {
-            background: linear-gradient(45deg, #ce5d31, #a14624);
+            background: linear-gradient(135deg, #ce5d31 0%, #a14624 50%, #8b3a1f 100%);
+        }
+        
+        .countdown-wrapper {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(200, 200, 200, 0.1);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .countdown-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(200, 170, 100, 0.4) 50%,
+                transparent 100%);
+            z-index: 10;
+        }
+        
+        .countdown-wrapper::after {
+            display: none;
+        }
+        
+        .time-box {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            min-width: 95px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid rgba(200, 170, 100, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .time-box:nth-child(1) { animation: fadeIn 0.8s ease-out 0.1s forwards; }
+        .time-box:nth-child(2) { animation: fadeIn 0.8s ease-out 0.2s forwards; }
+        .time-box:nth-child(3) { animation: fadeIn 0.8s ease-out 0.3s forwards; }
+        .time-box:nth-child(4) { animation: fadeIn 0.8s ease-out 0.4s forwards; }
+        
+        .time-box::before {
+            display: none;
+        }
+        
+        .time-box::after {
+            display: none;
+        }
+        
+        .time-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            border-color: rgba(200, 170, 100, 0.25);
+        }
+        
+        .time-value {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Syncopate', sans-serif;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+            position: relative;
+            z-index: 10;
+            color: #F5F5F5;
+            text-shadow: none;
+            filter: none;
+        }
+        
+        .time-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(200, 170, 100, 0.6);
+            margin-top: 8px;
+            z-index: 10;
+            position: relative;
+            text-shadow: none;
+        }
+        
+        .countdown-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(200, 170, 100, 0.8);
+            text-shadow: none;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0s forwards;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .tournament-started {
+            color: rgba(200, 170, 100, 0.9);
+            text-shadow: none;
+            animation: none;
+        }
+        
+        .countdown-glow {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.85;
+            }
+        }
+        
+        .tournament-started {
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+        
+        .countdown-glow {
+            display: none;
+        }
+        
+        @media (max-width: 1024px) {
+            .time-box {
+                min-width: 100px;
+                border-radius: 14px;
+            }
+            .time-value {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .countdown-wrapper {
+                padding: 2.5rem 1.5rem !important;
+            }
+            .time-box {
+                min-width: 85px;
+                border-radius: 12px;
+            }
+            .time-value {
+                font-size: 2.5rem;
+            }
+            .time-label {
+                font-size: 0.65rem;
+                letter-spacing: 0.25em;
+                margin-top: 6px;
+            }
+            .countdown-title {
+                font-size: 0.75rem;
+                letter-spacing: 0.3em;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .countdown-wrapper {
+                padding: 2rem 1.25rem !important;
+            }
+            .countdown-flex {
+                gap: 0.75rem !important;
+                max-width: 100%;
+            }
+            .time-box {
+                flex: 1 1 calc(50% - 0.5rem);
+                min-width: 0;
+                max-width: 140px;
+                border-radius: 12px;
+            }
+            .time-value {
+                font-size: 2rem;
+            }
+            .time-label {
+                font-size: 0.6rem;
+            }
+        }
+        
+        .countdown-wrapper {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        .time-box {
+            will-change: transform, box-shadow;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
     </style>
 </head>
@@ -71,7 +289,7 @@
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6" id="home">
+    <header class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 px-6" id="home">
         <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
             <div class="reveal">
                 <p class="text-prestige text-[10px] font-bold tracking-[0.6em] uppercase mb-4">The Current Era</p>
@@ -87,6 +305,39 @@
                 <div class="absolute -inset-10 bg-clay-500/20 blur-[100px]"></div>
                 <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202506/carlos-alcaraz-and-jannik-sinner-082511601-16x9_0.jpg?size=800:450" 
                      class="rounded-3xl border border-white/10 shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-1000 cursor-pointer" alt="Champ">
+            </div>
+        </div>
+
+        <div class="w-full mt-20 md:mt-28">
+            <div class="countdown-wrapper relative max-w-6xl mx-auto rounded-3xl p-10 md:p-16">
+                <div class="countdown-glow"></div>
+                <h3 class="countdown-title text-center text-xs md:text-sm font-black tracking-[0.4em] uppercase mb-12 md:mb-16 relative z-20">
+                    NEXT TOURNAMENT
+                </h3>
+                <div id="countdown-flex" class="countdown-flex flex flex-wrap justify-center gap-6 md:gap-10 relative z-20">
+                    <div class="time-box">
+                        <div class="time-value" id="days">000</div>
+                        <div class="time-label">Days</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-value" id="hours">00</div>
+                        <div class="time-label">Hours</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-value" id="minutes">00</div>
+                        <div class="time-label">Minutes</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-value" id="seconds">00</div>
+                        <div class="time-label">Seconds</div>
+                    </div>
+                </div>
+                <div id="countdown-message" class="hidden text-center mt-12 relative z-20">
+                    <p class="tournament-started text-4xl md:text-6xl font-black italic text-white tracking-tight leading-none mb-4">
+                        🎾 Tournament Started!
+                    </p>
+                    <p class="text-white/60 text-sm md:text-base font-light tracking-wider">Roland Garros 2026 is now underway</p>
+                </div>
             </div>
         </div>
     </header>
@@ -123,14 +374,125 @@
     <script>
         lucide.createIcons();
 
-        // Reveal Logic
+        const TOURNAMENT_CONFIG = {
+            year: 2026,
+            month: 4,
+            day: 24,
+            hour: 11,
+            minute: 0,
+            second: 0,
+            timezone: 'Europe/Paris'
+        };
+        
+        const createTournamentDate = () => {
+            const { year, month, day, hour, minute, second, timezone } = TOURNAMENT_CONFIG;
+            
+            const isoDatetime = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:${String(second).padStart(2, '0')}`;
+            
+            const referenceUTC = new Date(isoDatetime + 'Z');
+            
+            const formatter = new Intl.DateTimeFormat('lookup', {
+                timeZone: timezone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            
+            const parts = formatter.formatToParts(referenceUTC);
+            const tzInfo = {};
+            parts.forEach(({type, value}) => tzInfo[type] = value);
+            
+            const tzRepresentedAsLocal = new Date(`${tzInfo.year}-${tzInfo.month}-${tzInfo.day}T${tzInfo.hour}:${tzInfo.minute}:${tzInfo.second}`);
+            
+            const tzOffsetMs = referenceUTC.getTime() - tzRepresentedAsLocal.getTime();
+            
+            const targetAsLocal = new Date(isoDatetime);
+            
+            return targetAsLocal.getTime() - tzOffsetMs;
+        };
+        
+        const TOURNAMENT_START = createTournamentDate();
+        
+        const countdown = {
+            els: {
+                days: document.getElementById('days'),
+                hours: document.getElementById('hours'),
+                minutes: document.getElementById('minutes'),
+                seconds: document.getElementById('seconds'),
+                container: document.getElementById('countdown-flex'),
+                message: document.getElementById('countdown-message')
+            },
+            
+            units: {
+                DAY: 86400000,
+                HOUR: 3600000,
+                MINUTE: 60000,
+                SECOND: 1000
+            },
+            
+            format: (num) => String(Math.max(0, num)).padStart(num >= 100 ? 3 : 2, '0'),
+            
+            calculate: (remaining) => ({
+                days: Math.floor(remaining / countdown.units.DAY),
+                hours: Math.floor((remaining % countdown.units.DAY) / countdown.units.HOUR),
+                minutes: Math.floor((remaining % countdown.units.HOUR) / countdown.units.MINUTE),
+                seconds: Math.floor((remaining % countdown.units.MINUTE) / countdown.units.SECOND)
+            }),
+            
+            update: function() {
+                const now = Date.now();
+                const remaining = TOURNAMENT_START - now;
+                
+                if (remaining < 0) {
+                    this.finish();
+                    return;
+                }
+                
+                const time = this.calculate(remaining);
+                
+                this.els.days.textContent = this.format(time.days);
+                this.els.hours.textContent = this.format(time.hours);
+                this.els.minutes.textContent = this.format(time.minutes);
+                this.els.seconds.textContent = this.format(time.seconds);
+            },
+            
+            finish: function() {
+                clearInterval(this.interval);
+                this.els.container.classList.add('hidden');
+                this.els.message.classList.remove('hidden');
+                
+                console.log('🎾 Roland Garros 2026 has begun! Bonne chance!');
+            },
+            
+            init: function() {
+                this.update();
+                this.interval = setInterval(() => this.update(), 1000);
+                
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.log('🎾 Roland Garros 2026 Countdown Initialized');
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.log('Tournament Start (Paris):', new Date(TOURNAMENT_START).toLocaleString('en-US', { 
+                    timeZone: 'Europe/Paris',
+                    dateStyle: 'full',
+                    timeStyle: 'long'
+                }));
+                console.log('Your Local Time:', new Date(TOURNAMENT_START).toLocaleString());
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            }
+        };
+        
+        countdown.init();
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
-        // Sidebar logic
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('-translate-x-full');
             document.getElementById('overlay').classList.toggle('hidden');
@@ -166,7 +528,6 @@
             observer.observe(card);
         });
 
-        // Trigger reveal for elements in view on load
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
