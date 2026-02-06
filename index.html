@@ -377,20 +377,42 @@
         const TOURNAMENT_CONFIG = {
             year: 2026,
             month: 4,
-            day: 18,
+            day: 24,
             hour: 11,
             minute: 0,
             second: 0,
-            timezone: 'Europe/Paris',
-            offset: '+02:00'
+            timezone: 'Europe/Paris'
         };
         
         const createTournamentDate = () => {
-            const { year, month, day, hour, minute, second, offset } = TOURNAMENT_CONFIG;
+            const { year, month, day, hour, minute, second, timezone } = TOURNAMENT_CONFIG;
             
-            const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:${String(second).padStart(2, '0')}${offset}`;
+            const isoDatetime = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:${String(second).padStart(2, '0')}`;
             
-            return new Date(dateString).getTime();
+            const referenceUTC = new Date(isoDatetime + 'Z');
+            
+            const formatter = new Intl.DateTimeFormat('lookup', {
+                timeZone: timezone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            
+            const parts = formatter.formatToParts(referenceUTC);
+            const tzInfo = {};
+            parts.forEach(({type, value}) => tzInfo[type] = value);
+            
+            const tzRepresentedAsLocal = new Date(`${tzInfo.year}-${tzInfo.month}-${tzInfo.day}T${tzInfo.hour}:${tzInfo.minute}:${tzInfo.second}`);
+            
+            const tzOffsetMs = referenceUTC.getTime() - tzRepresentedAsLocal.getTime();
+            
+            const targetAsLocal = new Date(isoDatetime);
+            
+            return targetAsLocal.getTime() - tzOffsetMs;
         };
         
         const TOURNAMENT_START = createTournamentDate();
@@ -443,7 +465,7 @@
                 this.els.container.classList.add('hidden');
                 this.els.message.classList.remove('hidden');
                 
-                console.log('🎾 Roland Garros 2026 has begun! Bon chance!');
+                console.log('🎾 Roland Garros 2026 has begun! Bonne chance!');
             },
             
             init: function() {
